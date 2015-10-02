@@ -15,8 +15,10 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/title_suggestion"
+        android:textStyle="bold"
         android:background="@color/colorPrimary"
-        android:textColor="#FFF"/>
+        android:textColor="#FFF"
+        style="@android:style/TextAppearance.Holo.Medium"/>
 
     <RelativeLayout
         android:id="@+id/panelSuggestion"
@@ -34,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imageManga"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp"
+            style="@android:style/TextAppearance.Holo.Medium"/>
 
         <TextView
             android:id="@+id/desc"
@@ -53,9 +56,11 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/title_hot_update"
+        android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
-        android:layout_below="@id/panelSuggestion"/>
+        android:layout_below="@id/panelSuggestion"
+        style="@android:style/TextAppearance.Holo.Medium"/>
 
     <ListView
         android:id="@+id/hotList"
@@ -69,9 +74,11 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="@string/title_latest"
+        android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="#FFF"
-        android:layout_below="@id/hotList"/>
+        android:layout_below="@id/hotList"
+        style="@android:style/TextAppearance.Holo.Medium"/>
 
     <ListView
         android:id="@+id/latestList"
