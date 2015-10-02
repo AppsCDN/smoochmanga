@@ -1,5 +1,7 @@
 package kishido.smoochmanga.site;
 
+import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
@@ -8,7 +10,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.msebera.android.httpclient.Header;
+import kishido.smoochmanga.model.HotMangaInfo;
+import kishido.smoochmanga.model.LatestMangaInfo;
 import kishido.smoochmanga.model.MangaInfo;
 import kishido.smoochmanga.site.listener.OnIndexLoadListener;
 
@@ -37,6 +44,7 @@ public class WebCrawlerClient {
     private static void parseIndex(String response, OnIndexLoadListener listener) {
         Document doc = Jsoup.parse(response);
 
+        // Manga Suggestion
         Elements e = doc.body().getElementsByClass("details");
         Element details = e.first();
 
@@ -56,5 +64,55 @@ public class WebCrawlerClient {
         }
 
         listener.onLoadMangaSuggestion(info);
+
+        // Latest Manga Update + Hot Updates
+        e = doc.body().getElementsByClass("rightBox");
+
+        Element hot = null, latest = null;
+        for (int i=0; i<e.size(); i++) {
+            Element temp = e.get(i);
+
+            String title = temp.getElementsByClass("barTitle").text();
+
+            if (title.contains("Latest")) {
+                latest = temp;
+            } else if (title.contains("Hot")) {
+                hot = temp;
+            }
+        }
+
+        // Hot Updates
+        Elements hotUpdates = hot.getElementsByTag("strong");
+        List<HotMangaInfo> hotUpdateList = new ArrayList<HotMangaInfo>();
+        for (int i=0; i<hotUpdates.size(); i++) {
+            Element a = hotUpdates.get(i).getElementsByTag("a").first();
+
+            HotMangaInfo hmi = new HotMangaInfo();
+
+            hmi.setName(a.text());
+            hmi.setChapterUrl(KMRoute.BASE_URL + a.attr("href").replace("../", ""));
+
+            hotUpdateList.add(hmi);
+        }
+
+        listener.onLoadHotUpdates(hotUpdateList);
+
+        // Latest Updates
+        Elements latestUpdates = latest.getElementsByTag("a");
+        List<LatestMangaInfo> latestUpdateList = new ArrayList<LatestMangaInfo>();
+        for (int i=0; i+1<latestUpdateList.size(); i+=2) {
+            Element title = latestUpdates.get(i);
+            Element chapter = latestUpdates.get(i+1);
+
+            LatestMangaInfo lmi = new LatestMangaInfo();
+
+            lmi.setName(title.text());
+            lmi.setLatestChapter(chapter.text());
+            lmi.setLatestChapterUrl(KMRoute.BASE_URL + chapter.attr("href").substring(1));
+
+            latestUpdateList.add(lmi);
+        }
+
+        listener.onLoadLatestUpdates(latestUpdateList);
     }
 }
