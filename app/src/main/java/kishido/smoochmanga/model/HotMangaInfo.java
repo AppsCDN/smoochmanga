@@ -6,7 +6,6 @@ package kishido.smoochmanga.model;
 public class HotMangaInfo {
 
     private String name;
-    private String chapterNum;
     private String chapterUrl;
 
     public String getName() {
@@ -15,14 +14,6 @@ public class HotMangaInfo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getChapterNum() {
-        return chapterNum;
-    }
-
-    public void setChapterNum(String chapterNum) {
-        this.chapterNum = chapterNum;
     }
 
     public String getChapterUrl() {
