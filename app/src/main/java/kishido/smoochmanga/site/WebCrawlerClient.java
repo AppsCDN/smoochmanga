@@ -1,8 +1,6 @@
 package kishido.smoochmanga.site;
 
-import android.util.Log;
-
-import com.loopj.android.http.AsyncHttpClient;
+ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.jsoup.Jsoup;
@@ -100,7 +98,7 @@ public class WebCrawlerClient {
         // Latest Updates
         Elements latestUpdates = latest.getElementsByTag("a");
         List<LatestMangaInfo> latestUpdateList = new ArrayList<LatestMangaInfo>();
-        for (int i=0; i+1<latestUpdateList.size(); i+=2) {
+        for (int i=0; i+1<latestUpdates.size(); i+=2) {
             Element title = latestUpdates.get(i);
             Element chapter = latestUpdates.get(i+1);
 

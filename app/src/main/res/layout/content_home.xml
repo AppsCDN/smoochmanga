@@ -9,6 +9,75 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_home"
     tools:context=".HomeActivity">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/barSuggestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/title_suggestion"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"/>
+
+    <RelativeLayout
+        android:id="@+id/panelSuggestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/barSuggestion">
+
+        <ImageView
+            android:id="@+id/imageManga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageManga"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imageManga"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/barHottest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/title_hot_update"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:layout_below="@id/panelSuggestion"/>
+
+    <ListView
+        android:id="@+id/hotList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/barHottest"/>
+
+    <TextView
+        android:id="@+id/barLatest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/title_latest"
+        android:background="@color/colorPrimary"
+        android:textColor="#FFF"
+        android:layout_below="@id/hotList"/>
+
+    <ListView
+        android:id="@+id/latestList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/barLatest"
+        android:paddingBottom="16dp"/>
+
 </RelativeLayout>

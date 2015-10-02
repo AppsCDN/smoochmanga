@@ -5,4 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_latest">Latest Updates</string>
+    <string name="title_suggestion">Suggested Manga</string>
+    <string name="title_hot_update">Hot Updates</string>
 </resources>
