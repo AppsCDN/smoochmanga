@@ -48,6 +48,14 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"/>
 
+        <Button
+            android:id="@+id/btnRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="READ"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/desc"/>
+
     </RelativeLayout>
 
     <TextView
